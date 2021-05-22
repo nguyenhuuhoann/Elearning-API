@@ -23,20 +23,23 @@ public class UserEntity extends BaseAuditEntity<String> {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "is_enabled")
+    private Boolean enabled = Boolean.TRUE;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private RoleEntity role;
+    private RoleEntity roles;
 
     @Builder
-    public UserEntity(Long id, String userName, String email, String password, String phoneNumber, RoleEntity role) {
+    public UserEntity(Long id, String userName, String email, String password, String phoneNumber, RoleEntity roles) {
         super(id);
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.role=role;
+        this.roles=roles;
     }
 
     public UserEntity() {
